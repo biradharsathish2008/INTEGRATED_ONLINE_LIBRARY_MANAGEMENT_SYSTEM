@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Library Login</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+  background: linear-gradient(135deg, #4b6cb7, #182848);
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.login-box {
+  background: rgba(255,255,255,0.80);
+  padding: 35px 30px;
+  border-radius: 16px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+  width: 360px;
+  text-align: center;
+  animation: floatIn 0.7s ease-out;
+}
+
+.login-box h2 {
+  margin-bottom: 24px;
+  color: #2b2e4a;
+  letter-spacing: 1px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.login-box input[type="text"]:focus,
+.login-box input[type="password"]:focus {
+  outline: none;
+  border-color: #4b6cb7;
+  box-shadow: 0 0 0 3px rgba(75, 108, 183, 0.2);
+}
+
+.login-box button {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #4b6cb7, #182848);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-box button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.22);
+}
+
+.login-box button:active {
+  transform: translateY(0);
+}
+
+.login-box #msg {
+  margin-top: 14px;
+  font-weight: 600;
+  color: #d32f2f;
+}
+
+.login-box label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.login-box input[type="radio"] {
+  margin-left: 12px;
+  margin-right: 6px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h2>Library Login</h2>
+
+<div style="margin-bottom: 15px;">
+  <label><input type="radio" name="userType" value="admin" checked> Admin</label>
+  <label style="margin-left: 20px;"><input type="radio" name="userType" value="student"> Student</label>
+</div>
+
+<input type="text" id="username" placeholder="Enter Username">
+<input type="password" id="password" placeholder="Enter Password">
+
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+
+<div style="margin-top: 18px; font-size: 14px;">
+  <span>New student? </span>
+  <a href="#" style="color:#4b6cb7; text-decoration:none; font-weight:600;" onclick="showRegister()">Register here</a>
+</div>
+
+</div>
+
+<div class="login-box" id="register-box" style="display:none;">
+  <h2>Student Registration</h2>
+  <input type="text" id="reg-name" placeholder="Full Name">
+  <input type="email" id="reg-email" placeholder="Email">
+  <input type="text" id="reg-mobile" placeholder="Mobile Number">
+  <input type="password" id="reg-password" placeholder="Password">
+  <button onclick="registerStudent()">Register</button>
+  <p id="register-msg"></p>
+  <div style="margin-top: 10px; font-size: 14px;">
+    <span>Already have an account?</span>
+    <a href="#" style="color:#4b6cb7; text-decoration:none; font-weight:600;" onclick="hideRegister()">Sign in</a>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

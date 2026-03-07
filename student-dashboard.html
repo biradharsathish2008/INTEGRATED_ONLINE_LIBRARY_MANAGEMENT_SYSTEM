@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Student Dashboard</title>
+
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+<link rel="stylesheet" href="assets/css/font-awesome.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+.header-bar{
+background: linear-gradient(135deg, #0b3d91, #6a11cb);
+padding:15px;
+border-bottom:3px solid rgba(255,255,255,0.18);
+}
+
+.menu-bar{
+background:#ecf5f8;
+border-bottom:2px solid #7e57c2;
+padding:12px;
+}
+
+.menu-bar a{
+margin-right:20px;
+text-decoration:none;
+font-weight:900;
+color:#181818;
+}
+
+.menu-bar a:hover{
+color:#7e57c2;
+}
+
+.dashboard-box{
+background:white;
+padding:30px;
+border-radius:6px;
+box-shadow:0 0 10px rgba(0,0,0,0.08);
+margin-top:20px;
+}
+
+.card-widget{
+background:#f8f9fa;
+border:1px solid #dee2e6;
+border-radius:5px;
+padding:20px;
+margin-bottom:20px;
+text-align:center;
+}
+
+.card-widget h4{
+margin:0 0 10px 0;
+color:#495057;
+}
+
+.card-widget .number{
+font-size:36px;
+font-weight:bold;
+color:#7e57c2;
+}
+
+.search-box{
+background:white;
+padding:20px;
+border-radius:6px;
+box-shadow:0 0 10px rgba(0,0,0,0.08);
+margin-top:20px;
+}
+
+.table th{
+background:#f5f6fa;
+}
+
+.btn-xs{
+padding:5px 10px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<!-- HEADER -->
+<div class="header-bar">
+
+<div style="display:flex;justify-content:space-between;align-items:center">
+
+<h3 style="margin:0">
+<i class="fa fa-book"></i> Student Library Portal
+</h3>
+
+<button onclick="logout()" class="btn btn-danger">
+LOG OUT
+</button>
+
+</div>
+
+</div>
+
+
+<!-- MENU -->
+<div class="menu-bar">
+
+<a href="student-dashboard.html">Dashboard</a>
+
+<a href="#" onclick="showSearchBooks()">Search Books</a>
+
+<a href="#" onclick="showMyBooks()">My Borrowed Books</a>
+
+</div>
+
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+<!-- DASHBOARD CARDS -->
+<div id="dashboard-section" class="dashboard-box">
+
+<div style="display:flex;justify-content:space-between;align-items:center">
+  <h3 class="header-line">Student Dashboard</h3>
+  <div style="font-weight:700; color:#333;" id="student-name"></div>
+</div>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card-widget">
+
+<h4>Total Books Available</h4>
+
+<div class="number" id="total-books">5</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card-widget">
+
+<h4>Books Borrowed by Me</h4>
+
+<div class="number" id="my-books">0</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card-widget">
+
+<h4>Books Returned</h4>
+
+<div class="number" id="returned-books">0</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- SEARCH BOOKS SECTION -->
+<div id="search-section" class="search-box" style="display:none;">
+
+<h3 class="header-line">Search & Borrow Books</h3>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<input type="text" id="search-input" class="form-control" placeholder="Search by book name, author, or ISBN..." onkeyup="searchBooks()">
+
+</div>
+
+<div class="col-md-6">
+
+<select id="category-filter" class="form-control" onchange="filterByCategory()">
+
+<option value="">All Categories</option>
+
+<option value="Technology">Technology</option>
+
+<option value="Science">Science</option>
+
+<option value="Fiction">Fiction</option>
+
+<option value="History">History</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br>
+
+<table class="table table-striped table-bordered table-hover" id="books-table">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Book Name</th>
+
+<th>Category</th>
+
+<th>Author</th>
+
+<th>ISBN</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="books-tbody">
+
+<tr data-book-id="1">
+<td>1</td>
+<td>Core Java</td>
+<td>Technology</td>
+<td>Kumar Pandule</td>
+<td>222333</td>
+<td class="status-cell">Available</td>
+<td>
+<button class="btn btn-success btn-xs" onclick="issueBook(this)">
+<i class="fa fa-plus"></i> Borrow
+</button>
+</td>
+</tr>
+
+<tr data-book-id="2">
+<td>2</td>
+<td>Physics</td>
+<td>Science</td>
+<td>HC Verma</td>
+<td>1111</td>
+<td class="status-cell">Available</td>
+<td>
+<button class="btn btn-success btn-xs" onclick="issueBook(this)">
+<i class="fa fa-plus"></i> Borrow
+</button>
+</td>
+</tr>
+
+<tr data-book-id="3">
+<td>3</td>
+<td>Mathematics</td>
+<td>Science</td>
+<td>RD Sharma</td>
+<td>333444</td>
+<td class="status-cell">Available</td>
+<td>
+<button class="btn btn-success btn-xs" onclick="issueBook(this)">
+<i class="fa fa-plus"></i> Borrow
+</button>
+</td>
+</tr>
+
+<tr data-book-id="4">
+<td>4</td>
+<td>English Literature</td>
+<td>Fiction</td>
+<td>William Shakespeare</td>
+<td>444555</td>
+<td class="status-cell">Available</td>
+<td>
+<button class="btn btn-success btn-xs" onclick="issueBook(this)">
+<i class="fa fa-plus"></i> Borrow
+</button>
+</td>
+</tr>
+
+<tr data-book-id="5">
+<td>5</td>
+<td>World History</td>
+<td>History</td>
+<td>John Smith</td>
+<td>555666</td>
+<td class="status-cell">Available</td>
+<td>
+<button class="btn btn-success btn-xs" onclick="issueBook(this)">
+<i class="fa fa-plus"></i> Borrow
+</button>
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- MY BORROWED BOOKS SECTION -->
+<div id="my-books-section" class="search-box" style="display:none;">
+
+<h3 class="header-line">My Borrowed Books</h3>
+
+<br>
+
+<table class="table table-striped table-bordered table-hover">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Book Name</th>
+
+<th>Author</th>
+
+<th>Borrow Date</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="my-books-tbody">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+function initStudentDashboard(){
+  var student = getCurrentStudent();
+  if(!student){
+    window.location = "login.html";
+    return;
+  }
+
+  document.getElementById('student-name').innerText = 'Welcome, ' + student.name;
+  renderMyBooks();
+  refreshBookListStatus();
+  updateDashboardCounts();
+}
+
+function showSearchBooks(){
+  document.getElementById('dashboard-section').style.display = 'none';
+  document.getElementById('search-section').style.display = 'block';
+  document.getElementById('my-books-section').style.display = 'none';
+}
+
+function showMyBooks(){
+  document.getElementById('dashboard-section').style.display = 'none';
+  document.getElementById('search-section').style.display = 'none';
+  document.getElementById('my-books-section').style.display = 'block';
+  renderMyBooks();
+}
+
+function searchBooks(){
+  var input = document.getElementById('search-input').value.toLowerCase();
+  var table = document.getElementById('books-table');
+  var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+  for(var i = 0; i < rows.length; i++){
+    var cells = rows[i].getElementsByTagName('td');
+    var found = false;
+    for(var j = 1; j < cells.length - 1; j++){ // Skip ID and Action columns
+      if(cells[j].innerText.toLowerCase().indexOf(input) > -1){
+        found = true;
+        break;
+      }
+    }
+    rows[i].style.display = found ? '' : 'none';
+  }
+}
+
+function filterByCategory(){
+  var category = document.getElementById('category-filter').value;
+  var table = document.getElementById('books-table');
+  var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+  for(var i = 0; i < rows.length; i++){
+    var categoryCell = rows[i].getElementsByTagName('td')[2]; // Category column
+    if(category === '' || categoryCell.innerText === category){
+      rows[i].style.display = '';
+    } else {
+      rows[i].style.display = 'none';
+    }
+  }
+}
+
+function getMyIssuedBooks(){
+  var student = getCurrentStudent();
+  if(!student) return [];
+  var issued = getIssuedBooks();
+  return issued.filter(function(item){
+    return item.studentId === student.id;
+  });
+}
+
+function updateDashboardCounts(){
+  var myIssued = getMyIssuedBooks();
+  var currentlyBorrowed = myIssued.filter(function(i){ return i.returnStatus !== 'Returned'; }).length;
+  var returned = myIssued.filter(function(i){ return i.returnStatus === 'Returned'; }).length;
+  document.getElementById('my-books').innerText = currentlyBorrowed;
+  document.getElementById('returned-books').innerText = returned;
+}
+
+function renderMyBooks(){
+  var tbody = document.getElementById('my-books-tbody');
+  if(!tbody) return;
+  var items = getMyIssuedBooks();
+  tbody.innerHTML = '';
+
+  items.forEach(function(item){
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + item.id + '</td>' +
+      '<td>' + item.bookName + '</td>' +
+      '<td>' + item.author + '</td>' +
+      '<td>' + item.issueDate + '</td>' +
+      '<td>' + item.returnStatus + '</td>' +
+      '<td>' + (item.returnStatus === 'Returned' ? '<span class="text-success">Returned</span>' : '<button class="btn btn-warning btn-xs" onclick="returnBook(this)"><i class="fa fa-undo"></i> Return</button>') + '</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+function refreshBookListStatus(){
+  var student = getCurrentStudent();
+  if(!student) return;
+
+  var issued = getIssuedBooks().filter(function(item){ return item.studentId === student.id && item.returnStatus !== 'Returned'; });
+  var rows = document.querySelectorAll('#books-table tbody tr');
+
+  rows.forEach(function(row){
+    var bookId = parseInt(row.getAttribute('data-book-id'), 10);
+    var statusCell = row.querySelector('.status-cell');
+    var button = row.querySelector('button');
+    var issuedItem = issued.find(function(i){ return i.bookId === bookId; });
+
+    if(issuedItem){
+      statusCell.innerText = 'Borrowed';
+      if(button){
+        button.innerHTML = '<i class="fa fa-check"></i> Borrowed';
+        button.className = 'btn btn-secondary btn-xs';
+        button.disabled = true;
+      }
+    } else {
+      statusCell.innerText = 'Available';
+      if(button){
+        button.innerHTML = '<i class="fa fa-plus"></i> Borrow';
+        button.className = 'btn btn-success btn-xs';
+        button.disabled = false;
+      }
+    }
+  });
+}
+
+function issueBook(button){
+  var student = getCurrentStudent();
+  if(!student) return;
+
+  var row = button.parentNode.parentNode;
+  var bookId = parseInt(row.getAttribute('data-book-id'), 10);
+  var bookName = row.cells[1].innerText;
+  var author = row.cells[3].innerText;
+  var isbn = row.cells[4].innerText;
+  var issueDate = new Date().toISOString().split('T')[0];
+
+  var issued = getIssuedBooks();
+  var existing = issued.find(function(item){
+    return item.studentId === student.id && item.bookId === bookId;
+  });
+
+  if(existing && existing.returnStatus !== 'Returned'){
+    alert('You already have this book borrowed.');
+    return;
+  }
+
+  var nextId = 1;
+  if(existing && existing.returnStatus === 'Returned'){
+    existing.returnStatus = 'Not Returned';
+    existing.issueDate = issueDate;
+    existing.bookName = bookName;
+    existing.author = author;
+    existing.isbn = isbn;
+
+    saveIssuedBooks(issued);
+    refreshBookListStatus();
+    renderMyBooks();
+    updateDashboardCounts();
+    alert('Book borrowed again successfully!');
+    return;
+  }
+
+  if(issued.length){
+    var lastId = parseInt(issued[issued.length - 1].id, 10);
+    if(!isNaN(lastId)) nextId = lastId + 1;
+  }
+
+  issued.push({
+    id: nextId,
+    studentId: student.id,
+    studentName: student.name,
+    bookId: bookId,
+    bookName: bookName,
+    author: author,
+    isbn: isbn,
+    issueDate: issueDate,
+    returnStatus: 'Not Returned'
+  });
+
+  saveIssuedBooks(issued);
+  refreshBookListStatus();
+  renderMyBooks();
+  updateDashboardCounts();
+  alert('Book borrowed successfully!');
+}
+
+function returnBook(button){
+  var row = button.parentNode.parentNode;
+  var recordId = parseInt(row.cells[0].innerText, 10);
+  var student = getCurrentStudent();
+  if(!student) return;
+
+  var confirmReturn = confirm('Return "' + row.cells[1].innerText + '"?');
+  if(!confirmReturn) return;
+
+  updateIssuedBookStatusById(recordId, 'Returned');
+  renderMyBooks();
+  updateDashboardCounts();
+  refreshBookListStatus();
+}
+
+window.addEventListener('DOMContentLoaded', function(){
+  initStudentDashboard();
+});
+
+</script>
+
+</body>
+</html>

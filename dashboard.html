@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Dashboard</title>
+
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+<link rel="stylesheet" href="assets/css/font-awesome.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+.header-bar{
+background: linear-gradient(135deg, #0b3d91, #6a11cb);
+padding:15px;
+border-bottom:3px solid rgba(255,255,255,0.18);
+}
+
+.menu-bar{
+background:#ecf5f8;
+border-bottom:2px solid #7e57c2;
+padding:12px;
+}
+
+.menu-bar a{
+margin-right:20px;
+text-decoration:none;
+font-weight:900;
+color:#181818;
+}
+
+.menu-bar a:hover{
+color:#7e57c2;
+}
+
+.dashboard-box{
+background:white;
+padding:30px;
+border-radius:6px;
+box-shadow:0 0 10px rgba(0,0,0,0.08);
+margin-top:20px;
+}
+
+.card-widget{
+transition:0.3s;
+}
+
+.card-widget:hover{
+transform:translateY(-5px);
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<!-- HEADER -->
+<div class="header-bar">
+
+<div style="display:flex;justify-content:space-between;align-items:center">
+
+<h3 style="margin:0">
+<i class="fa fa-book"></i> Online Library Management System
+</h3>
+
+<button onclick="logout()" class="btn btn-danger">
+LOG OUT
+</button>
+
+</div>
+
+</div>
+
+
+<!-- MENU -->
+<div class="menu-bar">
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="books.html">Books</a>
+
+<a href="students.html">Students</a>
+
+<a href="issue.html">Issue New Book</a>
+
+<a href="manage-issue.html">Manage Issued Books</a>
+
+</div>
+
+
+
+<div class="container">
+
+<div class="dashboard-box">
+
+<h3 class="header-line">Admin Dashboard</h3>
+
+<br>
+
+
+<div class="row">
+
+<div class="col-md-3 col-sm-3 col-xs-6">
+
+<div class="alert alert-success back-widget-set text-center card-widget">
+
+<i class="fa fa-book fa-5x"></i>
+
+<h3>2</h3>
+
+Books Listed
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-3 col-sm-3 col-xs-6">
+
+<div class="alert alert-info back-widget-set text-center card-widget">
+
+<i class="fa fa-bars fa-5x"></i>
+
+<h3>6</h3>
+
+Times Book Issued
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-3 col-sm-3 col-xs-6">
+
+<div class="alert alert-warning back-widget-set text-center card-widget">
+
+<i class="fa fa-recycle fa-5x"></i>
+
+<h3>3</h3>
+
+Times Books Returned
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-3 col-sm-3 col-xs-6">
+
+<div class="alert alert-danger back-widget-set text-center card-widget">
+
+<i class="fa fa-users fa-5x"></i>
+
+<h3>6</h3>
+
+Registered Users
+
+</div>
+
+</div>
+
+</div>
+
+
+<br><br>
+
+
+<div class="row">
+
+  <div class="col-md-10 col-md-offset-1">
+
+    <div class="card" style="padding: 24px; margin-bottom: 24px;">
+      <h4 style="margin-top:0;">Admin Credentials</h4>
+      <p style="color: #555;">Change the admin username and password used for logging in.</p>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <input id="admin-username" type="text" placeholder="Admin Username" style="flex:1; max-width:240px; padding:10px; border-radius:8px; border:1px solid rgba(0,0,0,0.2);">
+        <input id="admin-password" type="password" placeholder="Admin Password" style="flex:1; max-width:240px; padding:10px; border-radius:8px; border:1px solid rgba(0,0,0,0.2);">
+        <button onclick="saveAdminSettings()" class="btn btn-primary" style="height:42px; align-self:flex-end;">Save</button>
+      </div>
+
+      <p id="admin-settings-msg" style="margin-top:14px; font-size:14px; color:#2b7a0b;"></p>
+    </div>
+
+    <img src="images/library1.jpg" style="width:100%; border:4px solid #7e57c2; border-radius:6px">
+
+  </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<script src="script.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function(){
+    loadAdminSettings();
+  });
+</script>
+
+</body>
+
+</html>

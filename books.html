@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Manage Books</title>
+
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+<link rel="stylesheet" href="assets/css/font-awesome.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+.header-bar{
+background: linear-gradient(135deg, #0b3d91, #6a11cb);
+padding:15px;
+border-bottom:3px solid rgba(255,255,255,0.18);
+}
+
+.menu-bar{
+background:#ffffff;
+border-bottom:2px solid #7e57c2;
+padding:12px;
+}
+
+.menu-bar a{
+margin-right:20px;
+text-decoration:none;
+font-weight:600;
+color:#333;
+}
+
+.menu-bar a:hover{
+color:#7e57c2;
+}
+
+.container-box{
+background:white;
+padding:25px;
+border-radius:6px;
+box-shadow:0 0 10px rgba(0,0,0,0.08);
+margin-top:30px;
+}
+
+.table th{
+background:#f5f6fa;
+}
+
+.btn-xs{
+padding:5px 10px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<!-- HEADER -->
+<div class="header-bar">
+
+<div style="display:flex;justify-content:space-between;align-items:center">
+
+<h3 style="margin:0">
+<i class="fa fa-book"></i> Online Library Management System
+</h3>
+
+<button onclick="logout()" class="btn btn-danger">
+LOG OUT
+</button>
+
+</div>
+
+</div>
+
+
+<!-- MENU -->
+<div class="menu-bar">
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="books.html">Books</a>
+
+<a href="students.html">Students</a>
+
+<a href="issue.html">Issue New Book</a>
+
+<a href="manage-issue.html">Manage Issued Books</a>
+
+</div>
+
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+<div class="container-box">
+
+<h3 class="header-line">Manage Books</h3>
+
+<br>
+
+<!-- ADD NEW BOOK FORM -->
+<div class="panel panel-default">
+
+<div class="panel-heading">
+Add New Book
+</div>
+
+<div class="panel-body">
+
+<form id="add-book-form">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="form-group">
+
+<label>Book Name</label>
+
+<input type="text" id="book-name" class="form-control" required>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="form-group">
+
+<label>Category</label>
+
+<select id="book-category" class="form-control" required>
+
+<option value="">Select Category</option>
+
+<option value="Technology">Technology</option>
+
+<option value="Science">Science</option>
+
+<option value="Fiction">Fiction</option>
+
+<option value="History">History</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="form-group">
+
+<label>Author</label>
+
+<input type="text" id="book-author" class="form-control" required>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="form-group">
+
+<label>ISBN</label>
+
+<input type="text" id="book-isbn" class="form-control" required>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="form-group">
+
+<label>Price</label>
+
+<input type="text" id="book-price" class="form-control" placeholder="$" required>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="form-group">
+
+<br>
+
+<button type="button" onclick="addNewBook()" class="btn btn-success">
+
+<i class="fa fa-plus"></i> Add Book
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="panel panel-default">
+
+<div class="panel-heading">
+Books Listing
+</div>
+
+
+<div class="panel-body">
+
+<table class="table table-striped table-bordered table-hover">
+
+<thead>
+
+<tr>
+<th>ID</th>
+<th>Book Name</th>
+<th>Category</th>
+<th>Author</th>
+<th>ISBN</th>
+<th>Price</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+
+<tbody>
+
+<tr>
+<td>1</td>
+<td>Core Java</td>
+<td>Technology</td>
+<td>Kumar Pandule</td>
+<td>222333</td>
+<td>$20</td>
+
+<td>
+
+<button onclick="editRow(this)" class="btn btn-primary btn-xs">
+<i class="fa fa-edit"></i> Edit
+</button>
+
+<button onclick="deleteRow(this)" class="btn btn-danger btn-xs">
+<i class="fa fa-trash"></i> Delete
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+<td>2</td>
+<td>Physics</td>
+<td>Science</td>
+<td>HC Verma</td>
+<td>1111</td>
+<td>$15</td>
+
+<td>
+
+<button onclick="editRow(this)" class="btn btn-primary btn-xs">
+<i class="fa fa-edit"></i> Edit
+</button>
+
+<button onclick="deleteRow(this)" class="btn btn-danger btn-xs">
+<i class="fa fa-trash"></i> Delete
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
